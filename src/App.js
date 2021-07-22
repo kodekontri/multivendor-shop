@@ -1,25 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import counterActions from "./redux/actions/counter.actions";
+import { useSelector, useDispatch } from "react-redux";
+import Button from './components/button'
+import useButton from "./components/button/useButton"
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const counter = useSelector(state=>state.counter.count)
+    const {load, setLoad} = useButton()
+    const dispatch = useDispatch()
+      return (
+        <div className="App">
+          <Button text="click" loading={load} onClick={()=>setLoad(true)}/>
+          <button onClick={()=>dispatch(counterActions.increaseCounter())}>Click {counter}</button>
+        </div>
+      );
 }
 
 export default App;

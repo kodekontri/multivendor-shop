@@ -1,5 +1,7 @@
-export default function Button({text, loading, onClick}) {
-    return (
-        <button onClick={onClick}>{loading ? "loading" : text}</button>
-    )
+export default function Button({ children, className, loading, onClick }) {
+  return (
+    <button className={className} onClick={onClick}>
+      {loading ? "Loading" : children}
+    </button>
+  );
 }
